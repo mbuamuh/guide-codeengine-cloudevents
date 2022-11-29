@@ -1,0 +1,4 @@
+
+.DS_Store
+finish/guide-codeengine-cloudevents-inventory/.classpath
+finish/guide-codeengine-cloudevents-inventory/target/classes/io/openliberty/guides/inventory/client/SystemClient.class
