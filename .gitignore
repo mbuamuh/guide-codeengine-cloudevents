@@ -2,3 +2,17 @@
 .DS_Store
 finish/guide-codeengine-cloudevents-inventory/.classpath
 finish/guide-codeengine-cloudevents-inventory/target/classes/io/openliberty/guides/inventory/client/SystemClient.class
+finish/.project
+*.prefs
+finish/guide-codeengine-cloudevents-inventory/.factorypath
+finish/guide-codeengine-cloudevents-inventory/.project
+finish/guide-codeengine-cloudevents-inventory/.settings/.jsdtscope
+finish/guide-codeengine-cloudevents-system/.classpath
+finish/guide-codeengine-cloudevents-system/.settings/.jsdtscope
+finish/guide-codeengine-cloudevents-system/.settings/org.eclipse.wst.common.project.facet.core.xml
+*.container
+*.name
+finish/guide-codeengine-cloudevents-system/.project
+*.component
+finish/guide-codeengine-cloudevents-system/.factorypath
+finish/guide-codeengine-cloudevents-inventory/.settings/org.eclipse.wst.common.project.facet.core.xml
