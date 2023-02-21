@@ -1,81 +1,4 @@
-= Contributing a guide
-:template-url: https://github.com/OpenLiberty/guides-template
-:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
-
-Welcome to Open Liberty! In order to contribute a guide for Open Liberty, follow the steps in this README.
-
-### Step 1: Set up your computer.
-
-- Install https://help.github.com/articles/set-up-git/[Git] and become familiar with the https://blog.github.com/2015-07-29-git-2-5-including-multiple-worktrees-and-triangular-workflows/#improved-support-for-triangular-workflows[Git triangular workflow].
-- Install and know the basics of https://maven.apache.org/index.html[Maven] or https://gradle.org[Gradle].
-- Install a text editor with the https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc] compiler plugin and learn the syntax of AsciiDoc.
-
-### Step 2 (Optional): Try some existing guides.
-
-Use the guides on https://openliberty.io/guides/[openliberty.io] as examples.
-
-If you're not sure where to start, try the https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service] guide followed by the  https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices] guide.
-
-### Step 3: Know the structure and style.
-
-- Know your audience!
-* If the guide is introductory, explain the basic concepts of the technology. At the same time, try to avoid overwhelming the reader with too much information. If you're not sure if you've included the correct amount of info, consider asking a new user to try your guide.
-
-- Know the guide structure and the writing styles!
-* Take a look at the https://github.com/OpenLiberty/guides-template/wiki/Guidelines-for-Structure-and-Styles[Guidelines for Structure and Styles].
-
-
-### Step 4: Create a new guide.
-
-1. Clone the {template-url}[`guides-template`] to your own workspace.
-
-2. Develop your guide in your own workspace.
-
-** Develop code and write tests that are based on the project structure in the {template-url}[`guides-template`]. To start, create your project in the `finish` directory. Make a simple application that demonstrates how to use your topic.
-
-** Copy the code from the `finish` directory to the `start` directory. Then, from the copy in the `start` directory, remove the code that you want the user to focus on.
-
-** Write a guide that follows the `README.adoc` template (APPENDIX A) in the {template-url}[`guides-template`] repository. Introduce and explain the parts of code that you removed during the last step and tell the users where to copy and paste the code. Walk through how to build the `finish` directory, run the tests, and perform any other steps that users need to run your project on their own.
-
-3. Before proceeding further, you should review the https://github.com/OpenLiberty/guides-template/wiki/Self-Review-Checklist[checklist].
-
-4. Open a new issue in the https://github.com/OpenLiberty/guides-common/issues[guides-common] repository. Describe the topic you wrote, add a link to the repository that contains the complete draft of your guide, and the Open Liberty team will be notified.
-
-5. You must sign the https://github.com/OpenLiberty/open-liberty/blob/master/cla/open-liberty-cla-individual.pdf[Individual Contributor License Agreement] (CLA) in order to contribute. If you are writing the guide as part of your job, you might also want your employer to sign a https://github.com/OpenLiberty/open-liberty/blob/master/cla/open-liberty-cla-corporate.pdf[Corporate Contributor License Agreement] (CCLA). Instructions for how to sign and submit these agreements are provided in each document. You should send your signed CLA document (in PDF) to the email address cla@openliberty.io before you move on to the next step.
-
-6. After the Open Liberty team approves your guide and obtains your signed CLA, they will create a draft guide repository in the Open Liberty Project on GitHub for you. Your new repository will be named as `draft-guide-{projectid}`. Then, you can open a pull request that contains your commits for the guide, and the team will be notified for review. 
-
-7. Create a branch in the https://github.com/OpenLiberty/guides-common[guides-common] repository. Name your branch with your guide's projectid or something similar. This is where you will make your edits to `guide_categories.json` and `guide_tags.json` in order to categorize your guide and select tags.
-
-** Decide which subcategory your guide best fits into. The guide categories and subcategories are defined in the https://github.com/OpenLiberty/guides-common/blob/master/guide_categories.json[guide_categories.json] file and are shown in the table of contents on the /guides page. Your guide will appear under the subcategory you select in the json file. The order that the categories, subcategories and guides appear on the /guides page is based on the order of the json file. For a draft guide there is no need to include 'draft-guide-' in the json file. (I.e. For `draft-guide-{projectid}`, just add '{projectid}' to the json).
-
-*** If adding your guide to an existing subcategory, simply add the guide's projectid to the `guides` array below the desired `subcateogry_name`.
-
-*** If creating a new subcategory, add a new object to the `subcategories` array in the desired category. The new subcategory needs to have a `subcategory_name` string and a `guides` array. The `subcategory_name` should be sentence case (capitalize only the first letter of the entire phrase) as this is how it will be shown in the table of contents.
-
-** Select relevant tags for your guide. These tags can be used to search on the /guides page and will show up on the guide under the table of contents. Please avoid inventing new tags. The tags for all the guides are stored in https://github.com/OpenLiberty/guides-common/blob/master/guide_tags.json[guide_tags.json]. This file contains an array of JSON objects, one for each tag. Each tag object has a `"guides"` array where you can specify which guides the tag is applied to. Only tags with `"visible": "true"` will show up on the guides. If the tag does not have the `"visible"` key defined, the tag will be searchable, but it will not be visible on the guides. Another optional key is `additional_search_terms`. This is an array where you can specify additional search terms for the tag. These terms will not be visible on the guide. (e.g. 'Jakarta EE' and 'Java EE' are both searchable. Jakarta EE shows up as a visible tag, while Java EE is just a searchable tag).
-
-*** Once you have decided which tags you want to use, add your guide's projectid to the `"guides"` array for each of the tags you want to use. 
-
-** Open a pull request with your edits to https://github.com/OpenLiberty/guides-common/blob/master/guide_categories.json[guide_categories.json] and https://github.com/OpenLiberty/guides-common/blob/master/guide_tags.json[guide_tags.json].
-
-### Step 5: The Open Liberty team will review your guide.
-
-- You can see your feedback from the `Issues` section in your `draft-guide-{projectid}` repository when it's ready.
-- Follow up with the team's review discussions.
-
-## APPENDIX A: A template README.adoc
-Please open the README.adoc in a text editor or view it in `raw` form. 
-Follow the direction before the `BEGIN` line to remove all the instructions prior to commit. 
-Most instruction comments should be removed except the copyright.
-
-```
-// As you start writing your guide, keep everything between BEGIN and END in the README.adoc, 
-// meaning delete anything else that is above or below the BEGIN and END lines inclusively. 
-// Also, please delete any instructions that begin with //--** after you read them
-// ----------- BEGIN -----------
-//--** INSTRUCTION: The copyright statement must appear at the top of the file
-// Copyright (c) 2019 IBM Corporation and others.
+// Copyright (c) 2018, 2022 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -84,315 +7,478 @@ Most instruction comments should be removed except the copyright.
 //     IBM Corporation
 //
 :page-layout: guide-multipane
-//--** INSTRUCTION: The project id is the part of the git repository after the guide- and must be specified
-//--** :projectid: github repo name without the `guide-` prefix
-:projectid: template
-//--** INSTRUCTION: Provide an estimate of how long the guide will take to go through.
-:page-duration: 15 minutes
-//--** INSTRUCTION: Provide the date when the guide is published.  Format is YYYY-MM-DD.
-:page-releasedate: 2019-03-11
-//--** INSTRUCTION: Provide a description for the guide index page.
-:page-description: Learn how to create a todo list API as a REST service using JAX-RS, and Open Liberty.
-:guide-author: Open Liberty
-//--** INSTRUCTION: Specify the unique name of the guide that is used in the permalink.
-:page-related-guides: ['cdi-intro', 'rest-intro']
-//--** INSTRUCTION: Set 'basic', 'microprofile', 'none'
-:page-guide-category: microprofile
-//--** INSTRUCTION: Places the guide into the essentials section of a category
-//--** Requirement: Must define :page-guide-category:
-:page-essential: false
-//--** INSTRUCTION: Number is used to sort guide from left (lowest number) to right (highest number) in
-//--** the essentials section of a category
-//--** Requirement: Must have :page-essential: true
-:page-essential-order: 3
-//--** INSTRUCTION: Specify the slug in the website. This must be unique.
+:projectid: cloud-ibm-codeengine-cloudevents
+:page-duration: 45 minutes
+:page-releasedate: 2023-02-07
+:page-description: Learn how to deploy a system and an inventory microservice, using Open Liberty, Docker and IBM Cloud Code Engine.
+:page-tags: ['MicroProfile', 'Docker', 'Cloud']
+:page-related-guides: ['rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
-//--** INSTRUCTION: Source the common page elements, clone `git@github.com:OpenLiberty/guides-common.git`.
-:common-includes: ../guides-common/
-//--** INSTRUCTION: Source the image directory to include any images for the guide.
-:imagesdir: /img/guide/{projectid}
-//--** INSTRUCTION: Update the SEO title for the guide
-:page-seo-title: Creating a REST service
-//--** INSTRUCTION: Update the SEO description for the guide
-:page-seo-description: Find out how to create a REST service on Open Liberty
-//--** INSTRUCTION: You can't have a new line between the attributes and the title.
-= Title of guide, starting with a gerund (Creating, Administering, and so on)
-//--** EXAMPLE: Creating a REST API for a todo list application
+:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
+:source-highlighter: prettify
+:imagesdir: /img/guide/{cloud-ibm-codeengine-cloudevents}
+:page-seo-title: Deploying microservices into IBM Cloud Code Engine
+:page-seo-description: Find out how to deploy microservices using IBM Cloud Code Engine
+:hashtag: #
+:win: WINDOWS
+:mac: MAC
+:linux: LINUX
+:system-api: https://systemapp.[xxxxxx].[cloud region].codeengine.appdomain.cloud
+:inventory-api: https://inventoryapp.[xxxxxx].[cloud region].codeengine.appdomain.cloud
+:system-get: curl -X GET {system-api}/system/properties
+:inventory-get: curl -X GET https://inventoryapp.[xxxxxx].[cloud region].codeengine.appdomain.cloud/inventory/systems
+:inventory-post: curl -X POST https://inventoryapp.[xxxxxx].[cloud region].codeengine.appdomain.cloud/inventory/systems/systemapp.[xxxxxx].[cloud region].codeengine.appdomain.cloud
+:guide-author: Open Liberty
+= Deploying microservices into IBM Cloud Code Engine
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form,
 view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-//--** Start the introduction with "You'll explore how to..." or something similarly catchy.
-//--** Write no more than two sentences, with meaningful information on what the user can accomplish
-//--** with this guide.
-//--** Do not start the introduction with "This guide...".
-//--** EXAMPLE: Learn how to create a todo list API as a REST service using JAX-RS, CDI, and Open Liberty.
+Learn how to deploy microservices into IBM Cloud Code Engine, so that they run as serverless services.
 
-
-
+// =================================================================================================
+// Introduction
+// =================================================================================================
 
 == What you'll learn
 
-//--** Write about what the user will learn in a meaningful intro paragraph.
-//--** Follow the intro paragraph with more details of what the user will learn, but still keep it brief.
-//--** See the REST guide at as an exemplar guide.
-//--** https://openliberty.io/guides/rest-intro.html
-//--** https://github.com/OpenLiberty/guide-rest-intro
+You will learn how to deploy two microservices in containers, to IBM Cloud Container Registry and then to IBM Cloud Code Engine, to run as serverless functions in IBM Cloud. You will also learn how to send and receive data from the developed serverless functions, using Http as the event source.
 
-// EXAMPLE:
-// =============================================================================
-You'll learn how to create a todo list microservice using JAX-RS, CDI and Open Liberty.
-You will use Maven throughout the guide to build the microservice and deploy it
-to run on the Open Liberty application server.
+=== What is serverless?
+Serverless is an entire stack of cloud services that can respond to specific events or requests, and scale to zero when no longer in use. With serverless provisioning, management and billing are handled by the cloud provider and invisible to developers. Developers focus on writing code and business logic, and not worry about infrastructure. Infrastructure tasks (for example provisioning, securing, scaling, scheduling, patching etc...), are the responsibilities of the cloud provider. The cloud provider spins up and provisions the required resources on demand when the code executes, and spins them down when execution stops. Developers or their companies do not have to pay for idle capacity. Pricing is based on execution time and resources required. To learn more about serverless, you can read the https://www.ibm.com/cloud/learn/serverless[What is Serverless] document.
 
-=== What is JAX-RS
-* Add a brief description of JAX-RS
-
-=== What is CDI
-* Add a brief description of CDI
-
-=== What is Open Liberty
-* Add brief description of Open Liberty, where applicable
-
-Brief description of the todo list micrioservice
-// =============================================================================
-
-// If you have an image you want to include in the guide, store the image in the `assets` 
-// folder in your repo, and add the following syntax
-image::image-name.png[Image Caption,width=100%]
+=== What is IBM Cloud Code Engine?
+IBM Cloud Code Engine is a fully managed serverless platform, that runs your containerized workloads. This includes running web-apps, microservices, event driven functions, or batch jobs. Code engine can also build container images from your source code. Like any other serverless platform, code engine is designed such that developers can focus on writing code and not on infrastructure.
 
 
-///////////////////////////
-// Getting started
-///////////////////////////
+The two microservices you will run as IBM Cloud Code Engine serverless functions, are called `system` and `inventory`. The `system` microservice returns JVM system properties of the running container. The `inventory` microservice queries properties from the `system` microservice, and adds them to its inventory list. It also queries its inventory list, to return the properties that are queried from the `system` microservice.
 
-//--** Add this getting started section to your guide if it is applicable.
-//--** Use the following include to pull in the git clone instructions from the guides-common repo.
+// =================================================================================================
+// Prerequisites
+// =================================================================================================
+
+== Additional prerequisites
+
+Before you begin, the following additional tools need to be installed:
+
+* *Docker:* You need a containerization software for building containers. IBM Cloud Code Engine supports Docker, so you will use Docker in this guide. For installation instructions, refer to the official https://docs.docker.com/install/[Docker^] documentation.
+
+* *IBM Cloud CLI:* You need the IBM Cloud command-line tool `ibmcloud` to interact with your IBM Cloud account and its services. To install the IBM Cloud CLI for your platform, run one of the following commands:
+
++
+
+include::{common-includes}/os-tabs.adoc[]
+
+[.tab_content.windows_section]
+--
+Open command prompt as an administrator and run the following command.
+
+[role=command]
+```
+powershell -command "Set-ExecutionPolicy Unrestricted; iex(New-Object Net.WebClient).DownloadString('https://clis.cloud.ibm.com/install/powershell')"
+```
+--
+
+[.tab_content.mac_section]
+--
+[role=command]
+```
+curl -fsSL https://clis.cloud.ibm.com/install/osx | sh
+```
+--
+
+[.tab_content.linux_section]
+--
+[role=command]
+```
+curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+```
+--
+
+To verify that the IBM Cloud CLI is installed correctly, run the following command:
++
+[role=command]
+```
+ibmcloud help
+```
+
+* *IBM Cloud Container Registry plugin CLI:* 
+You need the IBM Cloud Container Registry command-line tool plugin `ibmcloud cr` to set up your own image namespace in an IBM-hosted, and managed, private registry. You will store Docker images of the `system` and `inventory` microservices in a namespace in the private registry. The microservices will be deployed into IBM Cloud Code Engine, from the private registry. To install the IBM Cloud Container Registry plugin CLI on your platform, run the following command:
++
+[role=command]
+```
+ibmcloud plugin install container-registry
+```
+
+To verify that the plugin is installed correctly, run the following command:
++
+[role=command]
+```
+ibmcloud plugin show cr
+```
+
+* *IBM Cloud Code Engine plugin CLI:*
+You need the IBM Cloud Code Engine command-line tool plugin `ibmcloud ce` to access the Code Engine service in your IBM Cloud account. To install the IBM Cloud Code Engine plugin CLI on your platform, run the following command: 
++
+[role=command]
+```
+ibmcloud plugin install code-engine
+```
+
+To verify that the plugin is installed correctly, run the following command:
++
+[role=command]
+```
+ibmcloud plugin show ce
+```
+
+// =================================================================================================
+// Getting Started
+// =================================================================================================
 
 [role='command']
 include::{common-includes}/gitclone.adoc[]
-//--** This include adoc will have the heading "Getting started".
-//--** If you are not using this command include statement, you'll need to add it as a subheading,
-//--** ie, "== Getting started".
 
 
+== Granting IBM Cloud Code Engine project access to IBM Cloud Container Registry
+
+Before you run the microprofile microservices as serverless functions in IBM Cloud Code engine, you have to create a project, in which the containerized microservices will run. To get the containerized microservices from your local machine to the project, you have to deploy them to IBM Cloud Container Registry, and grant the created project access to the IBM Cloud Container Registry.
 
 
-///////////////////////////
-// Try what you’ll build
-///////////////////////////
+=== Creating an IBM Cloud API Key
+Create an IBM Cloud API Key to be used by Ibm Cloud Code Engine to access images from Ibm Cloud Container Registry. It is recommended to create a different key for this purpose, so that the key is managed separately for its intended resources. Therefore, one can delete or update the key as they like, and will only need to change access for these resources, but will not need to change access to other resources which do not use this key.
+----
+ibmcloud iam api-key-create guideKey -d "Key to demo the open liberty serverless microservices, using code engine" --file guideKey.txt
+----
+The api key will be stored in the `guideKey.txt` file. Save this file in a safe and protected location.
 
-//--** This is a subsection of the "Getting started" section above. It should briefly walk the user
-//--** through how to setup everything in the "finish" directory and try out the finished version of
-//--** what they will be building.
+=== Creating an IBM Cloud Code Engine Project
+Create an IBM Cloud Code Engine project to group the serverless functions, and thus be able to manage them and provide access to them.
+----
+ibmcloud ce project create --name guide-project
+----
+List code engine projects to check if the `guide-project` has been successfully created.
+----
+ibmcloud ce project list
+----
+
+=== Adding IBM Cloud Container Registry access to IBM Cloud Code Engine project
+Change to the `guide-project` code engine project, to work within its context.
+----
+ibmcloud ce project select -n guide-project
+----
+Create an image registry secret, with which IBM Cloud code engine can access IBM Cloud container registry. In the command below, `<REGION>` can be for example `uk`, which is your location, and `XXXX` is the api key stored in the `guideKey.txt` file.
+----
+ibmcloud ce registry create --name guide-registry --server <REGION>.icr.io --username iamapikey --password XXXX
+----
+
+// =================================================================================================
+// Building and containerizing the microservices
+// =================================================================================================
+
+== Building and containerizing the microservices
+
+The first step of deploying to IBM Cloud code engine, is to build and containerize your microservices.
+
+The starting Java project, which you can find in the `start` directory, is a multi-module Maven project. It is made up of the `system` and `inventory` microservices. Each microservice resides in its own directory, start/guide-codeengine-http-system and start/guide-codeengine-http-inventory. Both of these directories contain a Dockerfile, which is necessary for building the Docker images. If you’re unfamiliar with Dockerfiles, check out the https://openliberty.io/guides/containerize.html[Containerizing microservices^] guide.
+
+To build these microservices, navigate to the `start` directory and run the following command:
+
+[role=command]
+```
+mvn package
+```
+
+Next, run the `docker build` commands to build the container images for your microservice:
+[role='command']
+```
+docker build -t system:1.0-SNAPSHOT guide-codeengine-http-system/.
+docker build -t inventory:1.0-SNAPSHOT guide-codeengine-http-inventory/.
+```
+
+The `-t` flag in the `docker build` command allows the Docker image to be labeled (tagged) in the `name[:tag]` format. The tag for an image describes the specific image version. If the optional `[:tag]` tag is not specified, the `latest` tag is created by default.
+
+During the build, you see various Docker messages that describe what images are being downloaded and built. When the build finishes, run the following command to list all local Docker images:
+
+[role=command]
+```
+docker images
+```
+
+Verify that the `system:1.0-SNAPSHOT` and `inventory:1.0-SNAPSHOT` images are listed among them, for example:
+
+[source, role="no_copy"]
+----
+REPOSITORY                        TAG
+system                            1.0-SNAPSHOT
+inventory                         1.0-SNAPSHOT
+icr.io/appcafe/open-liberty       kernel-slim-java11-openj9-ubi
+----
+
+If you don't see the `system:1.0-SNAPSHOT` and `inventory:1.0-SNAPSHOT` images, then check the Maven build log for any potential errors.
+
+// =================================================================================================
+// Pushing the images to IBM Cloud Container Registry
+// =================================================================================================
+
+== Pushing the images to IBM Cloud Container Registry
+Pushing the images to a registry, facilitates their deployment to IBM Cloud code engine.
+
+First, you must login to IBM Cloud container registry.
+[role=command]
+```
+ibmcloud cr login
+```
+To ensure that you are targeting the right IBM Cloud container registry region, run the command below. `[YOUR_REGION]` is your cloud region, for example `uk-south`.
+[role=command]
+```
+ibmcloud cr region-set [YOUR_REGION]
+```
+Next, create a namespace for your docker images:
+[role=command]
+```
+ibmcloud cr namespace-add guide-namespace
+```
+Next, choose repositories and tags, by which you can identify the images. `[REGION]` is your country, for example `uk`.
+[role='command']
+```
+docker tag system:1.0-SNAPSHOT [REGION].icr.io/guide-namespace/system:1.0-SNAPSHOT
+docker tag inventory:1.0-SNAPSHOT [REGION].icr.io/guide-namespace/inventory:1.0-SNAPSHOT
+```
+Next, push the images to your private registry:
+[role='command']
+```
+docker push [REGION].icr.io/guide-namespace/system:1.0-SNAPSHOT
+docker push [REGION].icr.io/guide-namespace/inventory:1.0-SNAPSHOT
+```
+Finally, verify that your images are in your private registry:
+[role=command]
+```
+ibmcloud cr image-list
+```
+
+// =================================================================================================
+// Deploying the microservices
+// =================================================================================================
+
+== Deploying the microservices in IBM Cloud Code Engine
+Now that your container images are in the IBM Cloud container registry, deploy them to IBM Cloud code engine.
+
+Change to the project in IBM Cloud code engine, in which you want to create your serverless microservices:
+[role=command]
+```
+ibmcloud ce project select -n guide-project
+```
+
+Create serverless microservices in IBM Cloud code engine from your images.
+[role='command']
+```
+ibmcloud ce app create --name systemapp --image uk.icr.io/guide-namespace/system:1.0-SNAPSHOT --registry-secret guide-registry --port 9080
+ibmcloud ce app create --name inventoryapp --image uk.icr.io/guide-namespace/inventory:1.0-SNAPSHOT --registry-secret guide-registry --port 9080
+```
+
+=== Finding the microservice's url
+
+To make requests to the `systemapp` and `inventoryapp` serverless microservices, you have to get their urls.
+[role='command']
+```
+ibmcloud ce app get --name systemapp --output url
+ibmcloud ce app get --name inventoryapp --output url
+```
+The urls for systemsapp and invetoryapp, which will be returned will be in the format below, whereby you will substitute `xxxxx` and `cloud region`, by the values returned by `ibmcloud ce app get`
+
+* `{system-api}`
+* `{inventory-api}`
+
+=== Making requests to the serverless microservices
+
+Execute the `GET` method on `systemapp` to get its container properties.
+[role='command']
+---
+$ `{system-get}`
+
+Next, execute the `GET` method on `inventoryapp` to show that no properties from `systemapp` have been added to its inventory list.
+[role='command']
+---
+$ `{inventory-get}`
+
+It returns an empty list
+[source, role="no_copy"]
+----
+[]
+----
+Next, add the `systemapp` container properties `java.vendor.url`, and `wlp.install.dir` to the inventory list of `inventoryapp`.
+[role='command']
+---
+$ `{inventory-post}` -H "Ce-Specversion: 1.0" -H "Ce-Type: java.properties" -H "Ce-Source: io.cloudevents.examples/properties" -H "Ce-Id: properties" -H "Content-Type: application/json" -H "Ce-Subject: resources" -d "[\"java.vendor.url\",\"wlp.install.dir\"]"
+
+Finally, retrieve the properties added to the `inventoryapp` inventory list:
+[role='command']
+---
+$ `{inventory-get}`
+
+// =================================================================================================
+// Testing microservices that are running on IBM Cloud
+// =================================================================================================
+
+== Testing microservices that are running on IBM Cloud
+
+A few tests are included for you to test the basic functionality of the microservices. If a test fails, then you might have introduced a bug into the code. To run the tests, wait until all pods are in the ready state before proceeding further. The default properties that are defined in the `pom.xml` file are:
+
+[cols="15, 100", options="header"]
+|===
+| *Property*        | *Description*
+| `system.host`        | The hostname of the system service on IBM Cloud Code Engine.
+| `inventory.host` | The hostname of the inventory service on IBM Cloud Code Engine.
+|===
+
+Use the following command to run the integration tests against your microservices. Substitute `[system-hostname]` and `[inventory-hostname]` with the appropriate values.
+
+[role=command]
+```
+mvn failsafe:integration-test -Dsystem.host=[system-hostname] -Dinventory.host=[inventory-hostname]
+```
+
+If the tests pass, you'll see an output similar to the following for each service respectively:
+
+[source, role="no_copy"]
+----
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running it.io.openliberty.guides.system.SystemEndpointIT
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.673 sec - in it.io.openliberty.guides.system.SystemEndpointIT
+
+Results:
+
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+----
+
+[source, role="no_copy"]
+----
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running it.io.openliberty.guides.inventory.InventoryEndpointIT
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.222 sec - in it.io.openliberty.guides.inventory.InventoryEndpointIT
+
+Results:
+
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+----
+
+== Deploying a new version of system microservice
+
+Optionally, you might want to make changes to your microservice and redeploy the updated version. In this section, you will bump the version of the `system` microservice to `2.0-SNAPSHOT` and redeploy the new version of the microservice. 
+
+Use Maven to repackage your microservice:
+[role=command]
+```
+mvn package
+```
+
+Next, build the new version of the container image as `2.0-SNAPSHOT`:
+[role=command]
+```
+docker build -t system:2.0-SNAPSHOT system/.
+```
+
+Since you built a new image, you need to push it to the repository again. In the following `docker` command, remember to replace `uk.icr.io` with your registry and `guide-namespace` with the namespace you created earlier in the guide.
+
+// Tagging images
+Tag your container image with the relevant data about your registry.
+
+[role=command]
+```
+docker tag system:2.0-SNAPSHOT uk.icr.io/guide-namespace/system:2.0-SNAPSHOT
+```
+
+// Pushing images
+Push your image to the registry.
+
+[role=command]
+```
+docker push uk.icr.io/guide-namespace/system:2.0-SNAPSHOT
+```
+
+Update the `systemapp` application on IBM Cloud Code Engine to the new container image that you just pushed to the registry:
+
+[role=command]
+```
+ibmcloud ce app update --name systemapp --image uk.icr.io/guide-namespace/system:2.0-SNAPSHOT --registry-secret guide-registry --port 9080
+```
+
+Get the `systemapp` url:
 
 [role='command']
-include::{common-includes}/twyb-intro.adoc[]
-//--** This include adoc will have the subheading "Try what you'll build".
-//--** If you are not using this command include statement, you'll need to add it as a subheading,
-//--** ie, "=== Try what you'll build".
+```
+ibmcloud ce app get --name systemapp --output url
+```
 
-//--** Describe what user should run and expect to see after running the complete version of the application.
-Add a brief explanation on how to use the finished application.
 
+// =================================================================================================
+// Tear Down
+// =================================================================================================
+
+== Tearing down the environment
+
+When you no longer need the serverless microservices, you can delete them from IBM Cloud Code Engine, and all the resources you created in order to deploy the microservices.
+
+Delete the applications from IBM Cloud Code Engine by running the `ibmcloud ce app delete` command:
 [role='command']
-include::{common-includes}/twyb-end.adoc[]
+```
+ibmcloud ce app delete --name systemapp
+ibmcloud ce app delete --name inventoryapp
+```
 
+Delete the project in which the applications were created in IBM Cloud Code Engine:
+[role=command]
+```
+ibmcloud ce project delete -n guide-project
+```
 
+Remove your images from your container registry. Remember to replace `uk.icr.io` to your registry and `guide-namespace` with the namespace you created earlier in the guide.
 
+[role=command]
+```
+ibmcloud cr image-rm uk.icr.io/guide-namespace/system:1.0-SNAPSHOT
+ibmcloud cr image-rm uk.icr.io/guide-namespace/system:2.0-SNAPSHOT
+ibmcloud cr image-rm uk.icr.io/guide-namespace/inventory:1.0-SNAPSHOT
+```
 
-== Section title for this section, starting with a gerund like Creating, Building, etc
+Remove the namespace you created in your container registry.
 
-//--** Add the various sections that are needed for a particular guide.
+[role=command]
+```
+ibmcloud cr namespace-rm guide-namespace
+```
 
-//--** Start each additional section title with a meaningful gerund such as Creating, Building, Testing.
-//--** Follow the gerund with a meaningful noun phrase. For example: Creating a JAX-RS application
-//--** Have as many sections and section titles as needed.
-// EXAMPLES:
+Log out of your container registry. Remember to replace `uk.icr.io` to your registry.
 
-* Building a todo list model
+[role=command]
+```
+docker logout uk.icr.io
+docker logout registry.ng.bluemix.net
+```
 
-* Creating an application manager
+Log out of the `ibmcloud` command line tool.
 
-* Creating the JAX-RS Resource
+[role=command]
+```
+ibmcloud logout
+```
 
-
-//--** Write a sentence with the context like "Navigate to the `start` directory to begin." in the section
-//--** where user starts working with the implementation.
-
-//--** Add the include adoc for starting the Open Liberty server in development mode,
-//--** so that the server automatically picks up any changes that the users make to their application.
-
-//--** You can instruct the user to "Create", "Update", or "Replace" files in their application.
-
-//--** Note: There are classes that depend on each other. If one of the classes is not yet created
-//--** in the `start` directory, but it's being referenced in a different class, development mode might exit with a compilation error.
-//--** So be aware that you might need to predefine a minimal version of that class so that development mode does not exit with an error.
-
-//--** What to add for each section:
-//--** Start each section with a meaningful description about what the user is doing in the section.
-//--** Include code snippets.
-//--** Avoid making all the documentation a series of steps and tasks, bullets, or numbered lists.
-//--** Use tick marks around directories, files, values, class names, method names, and so on.
-//--** Example: `this-is-a-file`, `this/is/a/path`, `thisIsAMethod`.
-
-
-
-// EXAMPLE: The following block demonstrates how different sections look like for a todo application.
-// ======================================================================================================
-== EXAMPLE: Building a todo list model
-
-* Navigate to the `start` directory
-
-[role='command']
-include::{common-includes}/devmode-start.adoc[]
-
-* Represent an entry in a todo list
-
-[role="code_command hotspot", subs="quotes"]
-----
-#Create the `TodoModel` class.#
-`src/main/java/io/openliberty/guides/todolistSample/models/TodoModel.java`
-----
-
-TodoModel.java
-[source, Java, linenums, indent=0, role="code_column hide_tags=copyright"]
-----
-include::finish/src/main/java/io/openliberty/guides/todolistSample/models/TodoModel.java[]
-----
-
-* Getters, setters, and default constructor such that the model can be serialized/deserialized easily
-
-== EXAMPLE: Creating an application manager
-
-* Create a manager that is injected into the JAX-RS resource
-
-[role="code_command hotspot file=0", subs="quotes"]
-----
-#Create the `TodoManager` interface.#
-`src/main/java/io/openliberty/guides/todo/managers/TodoManager.java`
-----
-
-TodoManager.java
-[source, Java, linenums, indent=0, role="code_column hide_tags=copyright"]
-----
-include::finish/src/main/java/io/openliberty/guides/todolistSample/managers/TodoManager.java[]
-----
-
-* Next, create the sample todo manager class
-
-[role="code_command hotspot file=1", subs="quotes"]
-----
-#Create the `SampleTodoManager` class.#
-`src/main/java/io/openliberty/guides/todolistSample/managers/samples/SampleTodoManager.java`
-----
-
-SampleTodoManager.java
-[source, Java, linenums, indent=0, role="code_column hide_tags=copyright"]
-----
-include::finish/src/main/java/io/openliberty/guides/todolistSample/managers/samples/SampleTodoManager.java[]
-----
-
-* Implemented basic CRUD ([hotspot=32-36 file=1]`Create`, [hotspot=39-44 file=1]`Read`,
-[hotspot=47-57 file=1]`Update`, and [hotspot=60-68 file=1]`Delete`) operations.
-* Manager is [hotspot=14 file=1]`ApplicationScoped`, which essentially means that it is a singleton.
-
-== EXAMPLE: Creating the JAX-RS resource
-
-* Description of the technology, possibly with a link to learn more.
-* Use CDI to inject the todo manager into the resource
-
-[role="code_command hotspot", subs="quotes"]
-----
-#Create the `TodoResource` class.#
-`src/main/java/io/openliberty/guides/todolistSample/resources/TodoResource.java`
-----
-
-TodoResource.java
-[source, Java, linenums, indent=0, role="code_column hide_tags=copyright"]
-----
-include::finish/src/main/java/io/openliberty/guides/todolistSample/resources/TodoResource.java[]
-----
-
-* The resource methods are accessible via HTTP
-* Use [hotspot=27-43]`GET`, [hotspot=45-54]`POST`, [hotspot=56-71]`PUT`,
-and [hotspot=73-83]`DELETE` verbs to handle reading, creating, updating,
-and deleting resources
-* Validate data models and send appropriate response accordingly
-// ======================================================================================================
-
-
-
-
-//////////////////////////////////////////
-// Running the application
-//////////////////////////////////////////
-
-//--** Use the following include to pull in the adoc saying that development mode was already run,
-//--** and the changes were automatically picked up.
-[role='command']
-include::{common-includes}/devmode-build.adoc[]
-//--** This include adoc will have the subheading "Running the application".
-//--** If you are not using this command include statement, you'll need to add it as a subheading,
-//--** ie, "== Running the application".
-
-//--** In between here, you should state where you application can be found now that its running. ie. urls
-//--** Sample usage of the application
-//--** Suggestions for what changes the reader can make to explore the code
-
-
-== Testing the application
-
-//--** Show how to test your application.
-
-// EXAMPLE:
-// ======================================================================================================
-
-[role="code_command hotspot", subs="quotes"]
-----
-#Create the `TodoIT` class.#
-`finish/src/test/java/it/io/openliberty/guides/todo/TodoIT.java`
-----
-
-TodoIT.java
-[source, Java, linenums, indent=0, role="code_column hide_tags=copyright"]
-----
-include::finish/src/test/java/it/io/openliberty/guides/todolistSample/TodoIT.java[]
-----
-
-* Explain what each [hotspot=13-20]`@Test` test case is testing
-* Explain key methods
-// ======================================================================================================
-
-//--** Include this for info on how to run the tests
-[role='command']
-include::{common-includes}/devmode-test.adoc[]
-
-//--** Including a listing block with test results here
-//--** Show console output of the test results
-
-//--** OPTIONAL: after listing the test results, mention a simple change a user can make/introduce that
-//--** will cause the tests to fail. Be brief and don't give the users all of the instructions.
-//--** At this point, they should be comfortable enough to figure it out on their own.
-
-//--** Include this for info on how to quit development mode
-[role='command']
-include::{common-includes}/devmode-quit.adoc[]
-
+// =================================================================================================
+// finish
+// =================================================================================================
 
 == Great work! You're done!
 
-//--** Briefly summarize what the user achieved in this guide (1-2 sentences).
-EXAMPLE: You have just completed building a simple todo list application using JAXRS and CDI services in Open Liberty.
+You just deployed two microservices to IBM Cloud Code Engine. You also learned how to use the `docker push` command to push your docker images into IBM Cloud Container Registry, from where you deployed the microservices into Code Engine.
 
-//--** OPTIONAL: briefly state what the user could do next now that they've learned the
-//--** technologies in this guide.
-
-//--** Include the below from the guides-common repo to tell users how they can contribute to the guide
+// Multipane
 include::{common-includes}/attribution.adoc[subs="attributes"]
 
-//--** DO NO CREATE ANYMORE SECTIONS AT THIS POINT
-//--** Related guides will be added in automatically here if you included them in ":page-related-guides"
-// ------------ END ------------
-```
+// DO NO CREATE ANYMORE SECTIONS AT THIS POINT
+// Related guides will be added in automatically here if you included them in ":page-related-guides"
